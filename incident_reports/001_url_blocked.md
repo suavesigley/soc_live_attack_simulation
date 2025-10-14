@@ -34,16 +34,16 @@
 ## Screenshots
 
 ### 🔔 Alert Summary
-![Alert Summary](screenshots/alert_summary.png)
+![Alert Summary](screenshots/001.00.png)
 
 ### 📊 Splunk Event
-![Splunk Event](screenshots/splunk_event.png)
+![Splunk Event](screenshots/001.10.png)
 
 ### 🧑‍💻 User Activity in Splunk
-![User Activity](screenshots/splunk_user_activity.png)
+![User Activity](screenshots/001.20.png)
 
 ### 🌐 VM Browser History
-![Browser History](screenshots/vm_browser_history.png)
+![Browser History](screenshots/001.30.png)
 
 ### 📧 VM Email Evidence
 ![Email Evidence](screenshots/vm_email_bitly_link.png)
