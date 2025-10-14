@@ -35,22 +35,20 @@
 
 ### 🔔 Alert Summary
 ![Alert Summary](screenshots/001.00.png)
+*Figure 1: Firewall alert showing blocked access to blacklisted external URL (104.26.15.222).*
 
-### 📊 Splunk Event
+### 📊 Splunk Event Log
 ![Splunk Event](screenshots/001.10.png)
+*Figure 2: Splunk dashboard displaying HTTP 500 server error logs with blocked action and destination IP.*
 
-### 🧑‍💻 User Activity in Splunk
-![User Activity](screenshots/001.20.png)
+### 🧑‍💻 Bitly Link Analysis
+![Bitly404](screenshots/001.20.png)
+*Figure 3: Bitly URL returns 404 error, confirming link is inactive. System monitor and file explorer visible for context.*
 
-### 🌐 VM Browser History
-![Browser History](screenshots/001.30.png)
+### 📊 Splunk Stream Search
+![Splunk Stream Search](screenshots/001.30.png)
+*Figure 4: Splunk search results showing blocked metadata events from Stream logs, including destination IPs, URIs, and application details.*
 
-### 📧 VM Email Evidence
-![Email Evidence](screenshots/vm_email_bitly_link.png)
+### 📧 > ⚠️ Endpoint screenshots (browser history, email client, task manager, downloads folder) could not be captured due to persistent VM instability. Findings are based on SIEM logs, sandbox analysis, and firewall alerts.
 
-### 🖥️ VM Task Manager
-![Task Manager](screenshots/vm_taskmanager_suspicious.png)
 
-### 📁 VM Downloads Folder
-![Downloads Folder](screenshots/vm_downloads_folder.png)
-- Report documented and linked to dashboard repo
