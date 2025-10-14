@@ -1,79 +1,56 @@
-# 🧪 Incident Report 001 – Phishing Link Simulation
+# Incident Report 001 – Black  Listed External URL blocked by Firewall
 
-**Analyst**: Joshua Sigley  
-**Date**: [Insert Date]  
-**Lab Environment**: Kali Linux (attacker) → Windows VM (victim)  
-**Attack Type**: Phishing Email with Malicious Link  
-**Objective**: Simulate a phishing campaign and observe system behavior and detection
+# Incident Report – Alert 8816
 
----
+## Time of Activity
+2025-10-14 02:26:16 AEST
 
-## 1️⃣ Attack Summary
+## List of Affected Entities
+- Source IP: 10.20.2.17
+- Destination IP: 67.199.248.11
+- Destination Port: 80
+- Application: web-browsing
+- Protocol: TCP
+- URL: http://bit.ly/3sHkX3da12340
 
-- **Method**: Spoofed email sent from Kali using `swaks` or `sendemail`
-- **Payload**: Link to fake login page or PowerShell command hosted on Kali
-- **Victim Action**: Link clicked on Windows VM (liberta), triggering payload
-- **Expected Behavior**: Execution of PowerShell command, possible outbound traffic
+## Reason for Classifying as True Positive
+- URL matched threat intelligence feeds and firewall blacklist.
+- Splunk logs confirmed outbound request.
+- Sandbox analysis returned 404, indicating prior malicious use.
+- User behavior suggests phishing exposure.
 
----
+## Reason for Escalating the Alert
+- User clicked a shortened malicious link during business-related research.
+- Potential phishing compromise and social engineering risk.
+- Endpoint integrity and lateral movement need assessment.
 
-## 2️⃣ Execution Details
+## Recommended Remediation Actions
+- Notify user and review endpoint.
+- Block destination IP across perimeter.
+- Add URL to internal threat feeds.
+- Conduct phishing awareness training.
+- Monitor for similar outbound attempts.
 
-| Component | Action |
-|----------|--------|
-| **Email Tool** | `swaks --to victim@lab.local --from admin@corp.com --server 192.168.x.x --data phishing.txt`  
-| **Payload** | `Invoke-WebRequest` to download and execute script  
-| **Hosting** | Apache or Python HTTP server on Kali  
-| **Victim Response** | PowerShell execution logged via Sysmon or Wazuh
+## Screenshots
 
----
+### 🔔 Alert Summary
+![Alert Summary](screenshots/alert_summary.png)
 
-## 3️⃣ Detection & Logging
+### 📊 Splunk Event
+![Splunk Event](screenshots/splunk_event.png)
 
-| Tool Used | Detection |
-|-----------|-----------|
-| **Sysmon** | Logged PowerShell execution (Event ID 1)  
-| **Wazuh** | Alert triggered for suspicious command-line activity  
-| **Zeek** *(optional)* | Detected HTTP request to Kali server  
+### 🧑‍💻 User Activity in Splunk
+![User Activity](screenshots/splunk_user_activity.png)
 
----
+### 🌐 VM Browser History
+![Browser History](screenshots/vm_browser_history.png)
 
-## 4️⃣ MITRE ATT&CK Mapping
+### 📧 VM Email Evidence
+![Email Evidence](screenshots/vm_email_bitly_link.png)
 
-| Tactic           | Technique       | Description                        |
-|------------------|-----------------|------------------------------------|
-| Initial Access   | T1566.001       | Phishing via email  
-| Execution        | T1059.001       | PowerShell execution  
-| Credential Access| T1111           | Fake login page *(if used)*  
-| Command & Control| T1071.001       | Web-based C2 traffic *(if observed)*  
+### 🖥️ VM Task Manager
+![Task Manager](screenshots/vm_taskmanager_suspicious.png)
 
----
-
-## 5️⃣ Screenshots
-
-- Email preview  
-- Payload execution  
-- Sysmon/Wazuh alert  
-- Network traffic (if captured)
-
-> 📁 Save these in `/Screenshots/` as:
-> - `001-email-preview.png`
-> - `001-payload-execution.png`
-> - `001-sysmon-alert.png`
-
----
-
-## 6️⃣ Analyst Notes
-
-- This simulation confirms visibility of phishing and execution behavior  
-- Future iterations will include credential harvesting and lateral movement  
-- MITRE mapping updated in `MITRE-Mapping/001.md`  
-- Incident status tracked in `incident-tracker.csv`
-
----
-
-## ✅ Actions Taken
-
-- IOC added to threat feed  
-- Alert rule tuned in Wazuh  
+### 📁 VM Downloads Folder
+![Downloads Folder](screenshots/vm_downloads_folder.png)
 - Report documented and linked to dashboard repo
